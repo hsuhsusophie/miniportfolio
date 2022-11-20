@@ -34,7 +34,7 @@
   --smaller-font-size: .75rem;
 }
 
-@media screen and (min-width: 968px) {
+@media screen and (min-width: 1024px) {
   :root {
     --h2-font-size: 1.5rem;
     --h3-font-size: 1.25rem;
@@ -102,7 +102,7 @@ img {
 body.dark-theme{
   --title-color: hsl(var(--hue), 12%, 95%);
   --text-color: hsl(var(--hue), 12%, 75%);
-  --body-color: hsl(var(--hue), 40%, 8%);
+  --body-color:#6b544a;
   --container-color: hsl(var(--hue),24%,12%);
 }
 
@@ -114,7 +114,7 @@ body.dark-theme{
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
-  max-width: 1280px;
+  max-width: 1024px;
   margin-left: 1.5rem;
   margin-right: 1.5rem;
 }
@@ -132,6 +132,8 @@ body.dark-theme{
 
 .profile__container{
 row-gap: 2rem;
+max-width: 1280px;
+
 }
 
 .profile__data{
@@ -247,9 +249,6 @@ margin-bottom: 3rem;
     transform: translateX(.25rem);
   } 
   
-
-/*=============== FILTERS TABS ===============*/
-
 
 
 
@@ -555,12 +554,40 @@ font-size: var(--small-font-size);
 ::-webkit-scrollbar-thumb:hover{
   background-color: hsl(var(--hue), 8%, 44%);
 }
+
+
+
+
+/*=============== SCROLL UP ===============*/ 
+ .scrollup{
+  position: fixed;
+  right: 1rem;
+  bottom: 3.5rem;
+  background-color: var(--container-color);
+  box-shadow: 0 4px 12px hsla(19, 64%, 24%, .1);
+  display: inline-flex;
+  padding: .35rem;
+  border-radius: .25rem;
+  font-size: 1.5rem;
+  color: var(--first-color);
+  z-index:var(--z-tooltip) ;
+  transition: bottom .3s, transform .3s ;
+}  
+
+.scrollup:hover{
+  transform: translateY(-.25rem);
+} 
+
+/*=============== SHOW SCROLL UP ===============*/
+
+.show-scroll{
+  bottom: 7.5rem;
+}
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width:390px){
   .container{
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-inline: 1rem;
   }
 
   .profile__info{
@@ -581,6 +608,11 @@ font-size: var(--small-font-size);
       margin-bottom: 2rem;
     }  
 
+    .projects__img{
+      width: 200px;
+      justify-self: center;
+    } 
+
 
     .contact__container{
       row-gap: 4rem;
@@ -590,6 +622,10 @@ font-size: var(--small-font-size);
     .contact__img{
       width: 350px;
       margin-top: 0%;
+    }
+
+    .scrollup {
+      right: 3rem;
     }
 
 
