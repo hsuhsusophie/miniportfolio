@@ -40,9 +40,6 @@ const scrollUp = () =>{
 window.addEventListener('scroll', scrollUp)
 
 
-
-
-
 /*=============== SWIPER PROJECTS ===============*/
 
 
@@ -124,7 +121,6 @@ sr.reveal(`.skills__area,.projects__container ` , {origin: 'right'})
 
 //   contactForm.addEventListener('submit',sendEmail)
  
-
 
 
   
