@@ -1,28 +1,4 @@
-/*=============== FILTERS TABS ===============*/
-
-
-/*=============== DARK LIGHT THEME ===============*/
-const sections = document.querySelectorAll('section[id]')
-    
-const scrollActive = () =>{
-  	const scrollY = window.pageYOffset
-
-	sections.forEach(current =>{
-		const sectionHeight = current.offsetHeight,
-			  sectionTop = current.offsetTop - 58,
-			  sectionId = current.getAttribute('id'),
-			  sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
-
-		if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-			sectionsClass.classList.add('active-link')
-		}else{
-			sectionsClass.classList.remove('active-link')
-		}                                                    
-	})
-}
-window.addEventListener('scroll', scrollActive)
-
-/*=============== DARK LIGHT THEME ===============*/ 
+*=============== DARK LIGHT THEME ===============*/ 
 const themeButton = document.getElementById('theme-button')
 const darkTheme = 'dark-theme'
 const iconTheme = 'ri-sun-line'
@@ -54,27 +30,17 @@ themeButton.addEventListener('click', () => {
 
 
 
-
-/*=============== SCROLL REVEAL ANIMATION ===============*/
-const sr = ScrollReveal({
-  origin: 'top',
-  distance: '60px',
-  duration: 2500,
-  delay: 400,
-})
-
-sr.reveal(`.profile__border`)
-sr.reveal(`.profile__name`, {delay: 500})
-sr.reveal(`.profile__profesion`, {delay: 600})
-sr.reveal(`.profile__social`, {interval:100,delay: 700})
-sr.reveal(`.contact__container`, {interval:100,delay: 700})
-sr.reveal(`.profile__info`, {origin: 'right',delay: 800})
-sr.reveal(`.section__title`, {origin: 'left'})
-sr.reveal(`.skills__area,.projects__container ` , {origin: 'right'})
+/*=============== SHOW SCROLL UP ===============*/ 
+const scrollUp = () =>{
+	const scrollUp = document.getElementById('scroll-up')
+    // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
+	this.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
+						: scrollUp.classList.remove('show-scroll')
+}
+window.addEventListener('scroll', scrollUp)
 
 
 
-// sr.reveal(`.section__title`,`.section__border`, `.skills__content`, `.contact sectiond`,  {interval: 100})
 
 
 /*=============== SWIPER PROJECTS ===============*/
@@ -102,6 +68,23 @@ sr.reveal(`.skills__area,.projects__container ` , {origin: 'right'})
   });
   console.log(swiperProjects);
 
+/*=============== SCROLL REVEAL ANIMATION ===============*/
+
+const sr = ScrollReveal({
+  origin: 'top',
+  distance: '60px',
+  duration: 2500,
+  delay: 400,
+})
+
+sr.reveal(`.profile__border`)
+sr.reveal(`.profile__name`, {delay: 500})
+sr.reveal(`.profile__profesion`, {delay: 600})
+sr.reveal(`.profile__social`, {interval:100,delay: 700})
+sr.reveal(`.contact__container`, {interval:100,delay: 700})
+sr.reveal(`.profile__info`, {origin: 'right',delay: 800})
+sr.reveal(`.section__title`, {origin: 'left'})
+sr.reveal(`.skills__area,.projects__container ` , {origin: 'right'})
  /*=============== EMAIL JS ===============*/
 //  const contactForm = document.getElementById('contact-form')
 //        contactName = document.getElementById('contact-name')
@@ -141,6 +124,7 @@ sr.reveal(`.skills__area,.projects__container ` , {origin: 'right'})
 
 //   contactForm.addEventListener('submit',sendEmail)
  
+
 
 
   
