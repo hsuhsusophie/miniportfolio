@@ -56,7 +56,21 @@ themeButton.addEventListener('click', () => {
 
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
+const sr = ScrollReveal({
+  origin: 'top',
+  distance: '60px',
+  duration: 2500,
+  delay: 400,
+})
 
+sr.reveal(`.profile__border`)
+sr.reveal(`.profile__name`, {delay: 500})
+sr.reveal(`.profile__profesion`, {delay: 600})
+sr.reveal(`.profile__social`, {interval:100,delay: 700})
+sr.reveal(`.contact__container`, {interval:100,delay: 700})
+sr.reveal(`.profile__info`, {origin: 'right',delay: 800})
+sr.reveal(`.section__title`, {origin: 'left'})
+sr.reveal(`.skills__area,.projects__container ` , {origin: 'right'})
 
 
 /*=============== SWIPER PROJECTS ===============*/
