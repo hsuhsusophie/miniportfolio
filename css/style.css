@@ -3,15 +3,7 @@
 
 /*=============== VARIABLES CSS ===============*/
 :root {
-  /*========== Colors ==========*/
-  /*Color mode HSL(hue, saturation, lightness)*/
-  /*
-      Blue: hsl(207, 90%, 61%)
-      Purple: hsl(250, 66%, 75%)
-      Pink: hsl(356, 66%, 75%)
-      Teal: hsl(174, 63%, 62%)
-  */
-
+  --header-height: 3.5rem;
   --hue: 207;
   --sat: 90%;
   --lig: 61%;
@@ -32,6 +24,10 @@
   --normal-font-size: .938rem;
   --small-font-size: .813rem;
   --smaller-font-size: .75rem;
+
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
 }
 
 @media screen and (min-width: 1024px) {
@@ -101,15 +97,12 @@ img {
 /*========== Variables Dark theme ==========*/
 body.dark-theme{
   --title-color: hsl(var(--hue), 12%, 95%);
-  --text-color: hsl(var(--hue), 12%, 75%);
-  --body-color:#6b544a;
-  --container-color: hsl(var(--hue),24%,12%);
+  --text-color: hsl(var(--hue), 12%, 95%);
+  --body-color:#666;
+  --container-color: hsl(var(--hue),24%,55%);
 }
 
-/*========== 
-    Color changes in some parts of 
-    the website, in light theme
-==========*/
+
 
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -124,24 +117,153 @@ body.dark-theme{
   gap: 1.5rem;
 }
 
-/*=============== PROFILE ===============*/
-.profile{
+.section {
+  padding-block: 2.5rem;
+}
+
+.section__border {
+  border-bottom: 1px solid var(--title-color);
+  padding-bottom: 3.5rem;
+}
+
+.section__title, 
+.section__subtitle {
+  text-align: center;
+}
+
+.main{
+  overflow: hidden;
+}
+/*=============== HEADER & NAV===============*/
+.header{
+  width: 100%;
+  position: fixed;
+  bottom: 2rem;
+  left: 0;
+  z-index: var(--z-fixed);
+}
+
+.nav{
+  height: calc(var(--header-height) + .5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--body-color);
+  box-shadow:0 4px 20px hsla(207, 24%, 35%, .1) ;
+  padding-inline: 1.5rem;
+  border-radius: 3rem;
+}
+
+
+.nav__logo,
+.nav__toggle,
+.nav__close{
+  display: flex;
+
+  color: var(--title-color);
+}
+
+.nav__logo{
+  font-family: var(--body-font);
+}
+
+.nav__toggle{
+  display: flex;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+@media  screen and (max-width:1023px) {
+  .nav__menu{
+    position: fixed;
+    width: 88%;
+    left: 0;
+    right: 0;
+    bottom: -60%;
+    margin: 0 auto;
+    background-color: var(--body-color);
+    box-shadow:0 4px 20px hsla(207, 24%, 35%, .1) ;
+    padding: 2rem 1.5rem 5rem;
+    border-radius: 2rem;
+    transition: bottom .3s;
+  }
+}
+
+.nav__list{
+  grid-template-columns: repeat(2,max-content);
+  justify-content: center;
+  gap: 2rem 3rem;
+}
+
+.nav__link{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: .25rem;
+  color: var(--text-color);
+  font-size: var(--small-font-size);
+  transition: color .3s;
+}
+
+.nav__link:hover{
+  color: var(--first-color);
+}
+
+.nav__link i{
+  font-size: 1.25rem;
+}
+
+.nav__close{
+  position: absolute;
+  right: 1.5rem;
+  bottom: .7rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* .nav__close{
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}   */
+
+/* Show menu */
+.show-menu{
+  top: 0;
+}
+
+/* Change background header */
+.bg-header{
+box-shadow: 0 5px 8px hsla(19, 64%, 24%, .1);
+}
+
+
+
+/* Active link */
+.active-link{
+color: var(--first-color);
+}
+
+/*=============== HOME ===============*/
+.home{
     position: relative;
     padding-top: 3rem;
 }
 
-.profile__container{
+.home__container{
 row-gap: 2rem;
 max-width: 1280px;
 
 }
 
-.profile__data{
+.home__data{
     display: grid;
     text-align: center;
 }
 
-.profile__image{
+.home__image{
     width: 300px;
     height: 300px;
     /* background: linear-gradient(180deg,
@@ -154,13 +276,13 @@ max-width: 1280px;
   
 }
 
-.profile__image:hover{
+.home__image:hover{
   transform: scale(1.15);
 }
 
 
 
-.profile__border{
+.home__border{
     border: 3.5px solid var(--first-color);
     justify-self: center;
     width: 310px;
@@ -170,34 +292,34 @@ max-width: 1280px;
     place-items: center;
 }
 
-.profile__name{
+.home__name{
     font-size: var(--large-font-size);
 }
 
-.profile__profession{
+.home__profession{
     font-size: var(--body-font-size);
     font-weight: 300;
     color: var(--text-color);
     margin-bottom: 1rem;
 }
 
-.profile__social{
+.home__social{
     display: flex;
     justify-content: center;
     column-gap: .5rem;
 }
 
-.profile__social-link{
+.home__social-link{
     font-size: 1.25rem;
     color: var(--title-color);
     transition: .3s;
 }
 
-.profile__social-link:hover{
+.home__social-link:hover{
     color: var(--first-color);
 }
 
-.profile__info{
+.home__info{
 display:flex;
 justify-content: center;
 column-gap: 3.5rem;
@@ -206,7 +328,7 @@ margin-bottom: 3rem;
 
 
 
-.profile__info-group{
+.home__info-group{
     text-align: center;
 
 }
@@ -590,6 +712,14 @@ font-size: var(--small-font-size);
     margin-inline: 1rem;
   }
 
+  .nav__menu{
+    padding-bottom: 4rem;
+  }
+  
+  .nav__list{
+    gap: 1rem 1.25rem;
+  }
+
   .profile__info{
     display:grid;
     justify-content: center;
@@ -625,7 +755,7 @@ font-size: var(--small-font-size);
     }
 
     .scrollup {
-      right: 1.5rem;
+      right: 3rem;
     }
 
 
