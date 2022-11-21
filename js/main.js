@@ -14,11 +14,10 @@ if(navToggle){
 /*===== MENU HIDDEN =====*/
 /* Validate if constant exists */
 if(navClose){
-  navClose.addEventListener('click', () =>{
-      navMenu.classList.remove('show-menu')
-  })
+    navClose.addEventListener('click', () =>{
+        navMenu.classList.remove('show-menu')
+    })
 }
-
 
 /*=============== REMOVE MENU MOBILE ===============*/
 const navLink = document.querySelectorAll('.nav__link')
@@ -30,7 +29,70 @@ const linkAction = () =>{
 }
 navLink.forEach(n => n.addEventListener('click', linkAction))
 
+/*=============== CHANGE BACKGROUND HEADER ===============*/
+const scrollHeader = () =>{
+    const header = document.getElementById('header')
+    // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
+    this.scrollY >= 50 ? header.classList.add('bg-header') 
+                       : header.classList.remove('bg-header')
+}
+window.addEventListener('scroll', scrollHeader)
 
+/*=============== SHOW SCROLL UP ===============*/ 
+const scrollUp = () =>{
+	const scrollUp = document.getElementById('scroll-up')
+    // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
+	this.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
+						: scrollUp.classList.remove('show-scroll')
+}
+window.addEventListener('scroll', scrollUp)
+
+
+/*=============== SWIPER PROJECTS ===============*/
+
+
+var swiperProjects = new Swiper(".projects__container", {
+  loop: true,
+  spaceBetween:24,
+
+   navigation: {
+     nextEl: ".swiper-button-next",
+     prevEl: ".swiper-button-prev",
+   },
+   pagination: {
+     el: ".swiper-pagination",
+   },
+   breakpoints: {
+         1200: {
+           slidesPerView: 2,
+           spaceBetween: -56,
+     
+    
+         },
+       },
+ });
+ console.log(swiperProjects);
+
+/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+const sections = document.querySelectorAll('section[id]')
+    
+const scrollActive = () =>{
+  	const scrollY = window.pageYOffset
+
+	sections.forEach(current =>{
+		const sectionHeight = current.offsetHeight,
+			  sectionTop = current.offsetTop - 58,
+			  sectionId = current.getAttribute('id'),
+			  sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+
+		if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
+			sectionsClass.classList.add('active-link')
+		}else{
+			sectionsClass.classList.remove('active-link')
+		}                                                    
+	})
+}
+window.addEventListener('scroll', scrollActive)
 
 /*=============== DARK LIGHT THEME ===============*/ 
 const themeButton = document.getElementById('theme-button')
@@ -62,65 +124,7 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
 
-
-
-/*=============== SHOW SCROLL UP ===============*/ 
-const scrollUp = () =>{
-	const scrollUp = document.getElementById('scroll-up')
-    // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
-	this.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
-						: scrollUp.classList.remove('show-scroll')
-}
-window.addEventListener('scroll', scrollUp)
-
-/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-const sections = document.querySelectorAll('section[id]')
-    
-const scrollActive = () =>{
-  	const scrollY = window.pageYOffset
-
-	sections.forEach(current =>{
-		const sectionHeight = current.offsetHeight,
-			  sectionTop = current.offsetTop - 58,
-			  sectionId = current.getAttribute('id'),
-			  sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
-
-		if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-			sectionsClass.classList.add('active-link')
-		}else{
-			sectionsClass.classList.remove('active-link')
-		}                                                    
-	})
-}
-window.addEventListener('scroll', scrollActive)
-
-/*=============== SWIPER PROJECTS ===============*/
-
-
- var swiperProjects = new Swiper(".projects__container", {
-   loop: true,
-   spaceBetween:24,
-
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    pagination: {
-      el: ".swiper-pagination",
-    },
-    breakpoints: {
-          1200: {
-            slidesPerView: 2,
-            spaceBetween: -56,
-      
-     
-          },
-        },
-  });
-  console.log(swiperProjects);
-
 /*=============== SCROLL REVEAL ANIMATION ===============*/
-
 const sr = ScrollReveal({
   origin: 'top',
   distance: '60px',
@@ -128,53 +132,11 @@ const sr = ScrollReveal({
   delay: 400,
 })
 
-sr.reveal(`.profile__border`)
-sr.reveal(`.profile__name`, {delay: 500})
-sr.reveal(`.profile__profesion`, {delay: 600})
-sr.reveal(`.profile__social`, {interval:100,delay: 700})
+sr.reveal(`.home__border`)
+sr.reveal(`.home__name`, {delay: 500})
+sr.reveal(`.home__profesion`, {delay: 600})
+sr.reveal(`.home__social`, {interval:100,delay: 700})
 sr.reveal(`.contact__container`, {interval:100,delay: 700})
-sr.reveal(`.profile__info`, {origin: 'right',delay: 800})
+sr.reveal(`.home__info`, {origin: 'right',delay: 800})
 sr.reveal(`.section__title`, {origin: 'left'})
 sr.reveal(`.skills__area,.projects__container ` , {origin: 'right'})
- /*=============== EMAIL JS ===============*/
-//  const contactForm = document.getElementById('contact-form')
-//        contactName = document.getElementById('contact-name')
-//        contactEmail = document.getElementById('contact-email')
-//        contactMessage = document.getElementById('contact-message')
-//        contactMessages = document.getElementById('contact-messages')
-
-//  const sendEmail = (e) =>{
-//   e.preventDefault()
-
-//   if(contactName.value === ''|| contactEmail.value === '' || contactMessage.value === ''){
-//     //Add and remove color
-//     contactMessages.classList.remove('color-blue')
-//     contactMessages.classList.remove('color-red')
-
-//     //Show message
-//     contactMessages.textContent = 'Write all the input fields'
-//   }else{ //serviceID-templateID-#form-publicKEY
-//     emailjs.sendForm('service_0cn0wog','template_bob2tlr','#contact-form','XqHDyBDMAp3WLOzpp')
-//     .then(() =>{
-//       //show message and add color
-//       contactMessages.classList.add('color-blue')
-//       contactMessages.textContect = 'Message sent'
-
-//       //Remove message after five seconds
-//       setTimeout(()=>{
-//         contactMessages.textContect = ''
-//       },5000)
-
-//     })
-//   }
-
-
-
-
-//   }
-
-//   contactForm.addEventListener('submit',sendEmail)
- 
-
-
-  
