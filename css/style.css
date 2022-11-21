@@ -98,7 +98,7 @@ img {
 body.dark-theme{
   --title-color: hsl(var(--hue), 12%, 95%);
   --text-color: hsl(var(--hue), 12%, 95%);
-  --body-color:#666;
+  --body-color:#2f2d2d;
   --container-color: hsl(var(--hue),24%,55%);
 }
 
@@ -399,6 +399,7 @@ margin-bottom: 3rem;
 .skills__box{
   display: flex;
   justify-content: center;
+  row-gap: 3rem;
 }
 
 .skills__group{
@@ -720,7 +721,8 @@ font-size: var(--small-font-size);
     gap: 1rem 1.25rem;
   }
 
-  .profile__info{
+  
+  .home__info{
     display:grid;
     justify-content: center;
     column-gap: 1.5rem;
