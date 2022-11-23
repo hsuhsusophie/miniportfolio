@@ -299,10 +299,9 @@ body.dark-theme {
 }
 
 .home__border {
-  border: 3.5px solid var(--first-color);
   justify-self: center;
-  width: 310px;
-  height: 310px;
+  width: 305px;
+  height: 305px;
   border-radius: 15%;
   display: grid;
   place-items: center;
@@ -698,9 +697,13 @@ body.dark-theme {
 }
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 340px) {
   .container {
     margin-inline: 1rem;
+  }
+
+  .section {
+    padding-block: 4rem 1rem;
   }
 
   .nav__menu {
@@ -749,9 +752,7 @@ body.dark-theme {
     margin-top: 0%;
   }
 
-  .scrollup {
-    right: 3rem;
-  }
+ 
 }
 
 /* For medium devices */
